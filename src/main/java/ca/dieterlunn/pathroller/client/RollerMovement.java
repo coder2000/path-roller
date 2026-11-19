@@ -1,7 +1,7 @@
-package ca.dieterlunn.trailblazer.client;
+package ca.dieterlunn.pathroller.client;
 
-import ca.dieterlunn.trailblazer.TrailblazerConfig;
-import ca.dieterlunn.trailblazer.item.RollerItem;
+import ca.dieterlunn.pathroller.PathRollerConfig;
+import ca.dieterlunn.pathroller.item.RollerItem;
 import net.minecraft.client.player.Input;
 import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.client.event.MovementInputUpdateEvent;
@@ -21,7 +21,7 @@ public final class RollerMovement {
         if (!player.isUsingItem() || player.isPassenger() || !(player.getUseItem().getItem() instanceof RollerItem)) {
             return;
         }
-        float boost = TrailblazerConfig.get().rollingSpeed / VANILLA_USE_SLOWDOWN;
+        float boost = PathRollerConfig.get().rollingSpeed / VANILLA_USE_SLOWDOWN;
         Input input = event.getInput();
         input.leftImpulse *= boost;
         input.forwardImpulse *= boost;

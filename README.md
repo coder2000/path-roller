@@ -1,4 +1,4 @@
-# Trailblazer
+# Path Roller
 
 A Minecraft mod that adds a **Path Roller**: hold use and walk, and it paves dirt paths along the way,
 instead of clicking a shovel on every block.
@@ -17,9 +17,9 @@ dependencies. The `main` branch has the Minecraft 26.3 version for Fabric and Ne
   Diagonal paths are widened slightly (about width × √2 diagonal bands) so they look as wide as straight
   ones and you never have to step across a block corner.
 - The path follows terrain up/down by `verticalReach` blocks.
-- Grass and other replaceable plants on top are cleared. Flowers (the `trailblazer:clearable` tag) are
+- Grass and other replaceable plants on top are cleared. Flowers (the `pathroller:clearable` tag) are
   cleared too and dropped as items. Both are controlled by `clearPlants`.
-- Only blocks in the `trailblazer:rollable` block tag are converted (by default: grass, dirt, coarse dirt,
+- Only blocks in the `pathroller:rollable` block tag are converted (by default: grass, dirt, coarse dirt,
   podzol, mycelium, rooted dirt). You can extend the tag with a datapack.
 - Respects spawn protection and other build permissions.
 - Uses 1 durability per block paved; creative mode doesn't use durability.
@@ -35,7 +35,7 @@ ILI     L = any log
 
 ## Configuration
 
-`config/trailblazer.json` is created on first launch. Paving settings are read on the server;
+`config/pathroller.json` is created on first launch. Paving settings are read on the server;
 `rollingSpeed` is read on each player's client.
 
 | Key | Default | Meaning |
@@ -55,18 +55,18 @@ ILI     L = any log
 ```
 
 Gradle runs on JDK 17+ and downloads the Java 17 toolchain ForgeGradle needs if it isn't installed.
-The mod jar is `build/libs/trailblazer-1.20.1-<version>.jar`; drop it in your `mods` folder.
+The mod jar is `build/libs/pathroller-1.20.1-<version>.jar`; drop it in your `mods` folder.
 
 Run the game in dev with `./gradlew runClient`.
 
 ## Layout
 
-- `src/main/java/ca/dieterlunn/trailblazer/`
+- `src/main/java/ca/dieterlunn/pathroller/`
   - `paving/PaveFootprint.java` – footprint geometry, including diagonals
   - `paving/PathPaver.java` – block conversion
   - `item/RollerItem.java` – use/hold behaviour, width cycling, tooltip
   - `client/RollerMovement.java` – removes the use-item slowdown while rolling
-  - `TrailblazerConfig.java` – JSON config
+  - `PathRollerConfig.java` – JSON config
 - `tools/make_textures.py` – regenerates the placeholder item texture and icon
 
 ## License

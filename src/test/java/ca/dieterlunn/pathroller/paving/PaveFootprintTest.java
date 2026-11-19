@@ -1,4 +1,4 @@
-package ca.dieterlunn.trailblazer.paving;
+package ca.dieterlunn.pathroller.paving;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;

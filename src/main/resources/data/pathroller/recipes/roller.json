@@ -12,7 +12,7 @@
     "L": { "tag": "minecraft:logs" }
   },
   "result": {
-    "item": "trailblazer:roller",
+    "item": "pathroller:roller",
     "count": 1
   }
 }

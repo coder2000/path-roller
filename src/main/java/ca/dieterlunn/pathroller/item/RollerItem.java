@@ -1,8 +1,8 @@
-package ca.dieterlunn.trailblazer.item;
+package ca.dieterlunn.pathroller.item;
 
-import ca.dieterlunn.trailblazer.TrailblazerConfig;
-import ca.dieterlunn.trailblazer.paving.PathPaver;
-import ca.dieterlunn.trailblazer.paving.PaveDirection;
+import ca.dieterlunn.pathroller.PathRollerConfig;
+import ca.dieterlunn.pathroller.paving.PathPaver;
+import ca.dieterlunn.pathroller.paving.PaveDirection;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
@@ -38,7 +38,7 @@ public class RollerItem extends Item {
     }
 
     public static int getWidth(ItemStack stack) {
-        TrailblazerConfig config = TrailblazerConfig.get();
+        PathRollerConfig config = PathRollerConfig.get();
         CompoundTag tag = stack.getTag();
         int width = tag != null && tag.contains(WIDTH_TAG) ? tag.getInt(WIDTH_TAG) : config.defaultWidth;
         return Mth.clamp(width, 1, config.maxWidth);
@@ -46,9 +46,9 @@ public class RollerItem extends Item {
 
     @Override
     public void appendHoverText(ItemStack stack, @Nullable Level level, List<Component> tooltip, TooltipFlag flag) {
-        tooltip.add(Component.translatable("item.trailblazer.roller.tooltip.width", getWidth(stack))
+        tooltip.add(Component.translatable("item.pathroller.roller.tooltip.width", getWidth(stack))
                 .withStyle(ChatFormatting.GRAY));
-        tooltip.add(Component.translatable("item.trailblazer.roller.tooltip.usage")
+        tooltip.add(Component.translatable("item.pathroller.roller.tooltip.usage")
                 .withStyle(ChatFormatting.DARK_GRAY));
     }
 
@@ -57,9 +57,9 @@ public class RollerItem extends Item {
         ItemStack stack = player.getItemInHand(hand);
         if (player.isSecondaryUseActive()) {
             if (!level.isClientSide()) {
-                int width = getWidth(stack) % TrailblazerConfig.get().maxWidth + 1;
+                int width = getWidth(stack) % PathRollerConfig.get().maxWidth + 1;
                 stack.getOrCreateTag().putInt(WIDTH_TAG, width);
-                player.displayClientMessage(Component.translatable("item.trailblazer.roller.width", width)
+                player.displayClientMessage(Component.translatable("item.pathroller.roller.width", width)
                         .withStyle(ChatFormatting.GOLD), true);
                 level.playSound(null, player.blockPosition(), SoundEvents.UI_BUTTON_CLICK.value(), SoundSource.PLAYERS, 0.4F, 1.2F);
             }
@@ -97,7 +97,7 @@ public class RollerItem extends Item {
             return;
         }
 
-        TrailblazerConfig config = TrailblazerConfig.get();
+        PathRollerConfig config = PathRollerConfig.get();
         PaveDirection direction = PaveDirection.fromYaw(player.getYRot(), config.allowDiagonals);
         // Slightly below the feet so the block stood on is found both on full blocks and on (shorter) paths.
         BlockPos footing = BlockPos.containing(player.getX(), player.getY() - 0.2, player.getZ());
