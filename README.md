@@ -66,3 +66,7 @@ Run the game in dev with `./gradlew :fabric:runClient` or `./gradlew :neoforge:r
   - `TrailblazerConfig.java` – JSON config
 - `fabric/`, `neoforge/` – thin loader entrypoints and metadata
 - `tools/make_textures.py` – regenerates the placeholder item texture and icon
+
+## License
+
+[MIT](LICENSE)
