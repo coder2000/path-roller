@@ -1,4 +1,4 @@
-package ca.dieterlunn.trailblazer.paving;
+package ca.dieterlunn.pathroller.paving;
 
 import net.minecraft.util.Mth;
 

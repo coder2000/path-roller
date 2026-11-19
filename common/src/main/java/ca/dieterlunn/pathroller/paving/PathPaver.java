@@ -1,7 +1,7 @@
-package ca.dieterlunn.trailblazer.paving;
+package ca.dieterlunn.pathroller.paving;
 
-import ca.dieterlunn.trailblazer.Trailblazer;
-import ca.dieterlunn.trailblazer.TrailblazerConfig;
+import ca.dieterlunn.pathroller.PathRoller;
+import ca.dieterlunn.pathroller.PathRollerConfig;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.registries.Registries;
@@ -28,13 +28,13 @@ import java.util.List;
 public final class PathPaver {
     /** Blocks a roller can flatten. Defaults mirror what a shovel flattens; extend it with a datapack. */
     public static final TagKey<Block> ROLLABLE =
-            TagKey.create(Registries.BLOCK, Identifier.fromNamespaceAndPath(Trailblazer.MOD_ID, "rollable"));
+            TagKey.create(Registries.BLOCK, Identifier.fromNamespaceAndPath(PathRoller.MOD_ID, "rollable"));
     /**
      * Plants the roller clears (dropping them as items) even though they aren't replaceable like grass is.
      * Defaults to small and tall flowers; extend it with a datapack.
      */
     public static final TagKey<Block> CLEARABLE =
-            TagKey.create(Registries.BLOCK, Identifier.fromNamespaceAndPath(Trailblazer.MOD_ID, "clearable"));
+            TagKey.create(Registries.BLOCK, Identifier.fromNamespaceAndPath(PathRoller.MOD_ID, "clearable"));
 
     private PathPaver() {
     }
@@ -81,7 +81,7 @@ public final class PathPaver {
      * @return the number of blocks turned into dirt path
      */
     public static int pave(ServerLevel level, Player player, ItemStack roller, BlockPos footing, PaveDirection dir, int width) {
-        TrailblazerConfig config = TrailblazerConfig.get();
+        PathRollerConfig config = PathRollerConfig.get();
         int converted = 0;
         for (int[] offset : footprint(dir, width)) {
             BlockPos column = footing.offset(offset[0], 0, offset[1]);
@@ -92,7 +92,7 @@ public final class PathPaver {
         return converted;
     }
 
-    private static boolean paveColumn(ServerLevel level, Player player, ItemStack roller, BlockPos column, TrailblazerConfig config) {
+    private static boolean paveColumn(ServerLevel level, Player player, ItemStack roller, BlockPos column, PathRollerConfig config) {
         // Scan from the top of the reach down to the first solid surface, so paths follow gentle slopes.
         for (int dy = config.verticalReach; dy >= -config.verticalReach; dy--) {
             BlockPos pos = column.above(dy);
@@ -105,7 +105,7 @@ public final class PathPaver {
         return false;
     }
 
-    private static boolean flatten(ServerLevel level, Player player, ItemStack roller, BlockPos pos, TrailblazerConfig config) {
+    private static boolean flatten(ServerLevel level, Player player, ItemStack roller, BlockPos pos, PathRollerConfig config) {
         if (!level.mayInteract(player, pos) || !player.mayUseItemAt(pos, Direction.UP, roller)) {
             return false;
         }

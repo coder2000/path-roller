@@ -3,23 +3,23 @@ loaderVersion = "[1,)"
 license = "MIT"
 
 [[mods]]
-modId = "trailblazer"
+modId = "pathroller"
 version = "${version}"
-displayName = "Trailblazer"
+displayName = "Path Roller"
 authors = "Dieter Lunn"
 description = '''
 A roller that paves dirt paths as you walk, in any of eight directions and at a width you choose.
 '''
-logoFile = "assets/trailblazer/icon.png"
+logoFile = "assets/pathroller/icon.png"
 
-[[dependencies.trailblazer]]
+[[dependencies.pathroller]]
 modId = "minecraft"
 type = "required"
 versionRange = "[${minecraft_version},)"
 ordering = "NONE"
 side = "BOTH"
 
-[[dependencies.trailblazer]]
+[[dependencies.pathroller]]
 modId = "architectury"
 type = "required"
 versionRange = "[${architectury_api_version},)"

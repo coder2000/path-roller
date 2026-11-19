@@ -15,4 +15,4 @@ include("common")
 include("fabric")
 include("neoforge")
 
-rootProject.name = "trailblazer"
+rootProject.name = "pathroller"

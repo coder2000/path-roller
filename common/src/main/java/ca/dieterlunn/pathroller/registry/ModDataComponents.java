@@ -1,6 +1,6 @@
-package ca.dieterlunn.trailblazer.registry;
+package ca.dieterlunn.pathroller.registry;
 
-import ca.dieterlunn.trailblazer.Trailblazer;
+import ca.dieterlunn.pathroller.PathRoller;
 import com.mojang.serialization.Codec;
 import dev.architectury.registry.registries.DeferredRegister;
 import dev.architectury.registry.registries.RegistrySupplier;
@@ -10,7 +10,7 @@ import net.minecraft.network.codec.ByteBufCodecs;
 
 public final class ModDataComponents {
     public static final DeferredRegister<DataComponentType<?>> DATA_COMPONENTS =
-            DeferredRegister.create(Trailblazer.MOD_ID, Registries.DATA_COMPONENT_TYPE);
+            DeferredRegister.create(PathRoller.MOD_ID, Registries.DATA_COMPONENT_TYPE);
 
     /** The path width selected on a roller. Absent means "use the configured default". */
     public static final RegistrySupplier<DataComponentType<Integer>> ROLLER_WIDTH = DATA_COMPONENTS.register("roller_width",

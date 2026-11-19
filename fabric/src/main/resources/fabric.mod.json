@@ -1,18 +1,18 @@
 {
   "schemaVersion": 1,
-  "id": "trailblazer",
+  "id": "pathroller",
   "version": "${version}",
-  "name": "Trailblazer",
+  "name": "Path Roller",
   "description": "A roller that paves dirt paths as you walk, in any of eight directions and at a width you choose.",
   "authors": [
     "Dieter Lunn"
   ],
   "license": "MIT",
-  "icon": "assets/trailblazer/icon.png",
+  "icon": "assets/pathroller/icon.png",
   "environment": "*",
   "entrypoints": {
     "main": [
-      "ca.dieterlunn.trailblazer.fabric.TrailblazerFabric"
+      "ca.dieterlunn.pathroller.fabric.PathRollerFabric"
     ]
   },
   "depends": {

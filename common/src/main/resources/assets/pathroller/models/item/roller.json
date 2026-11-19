@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/handheld",
   "textures": {
-    "layer0": "trailblazer:item/roller"
+    "layer0": "pathroller:item/roller"
   }
 }

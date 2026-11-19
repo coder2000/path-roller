@@ -1,0 +1,6 @@
+{
+  "item.pathroller.roller": "Path Roller",
+  "item.pathroller.roller.width": "Roller width: %s",
+  "item.pathroller.roller.tooltip.width": "Width: %s",
+  "item.pathroller.roller.tooltip.usage": "Hold use and walk to pave. Sneak + use to change width."
+}

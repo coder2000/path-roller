@@ -1,4 +1,4 @@
-package ca.dieterlunn.trailblazer;
+package ca.dieterlunn.pathroller;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -12,12 +12,12 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 
 /**
- * Server-side settings, stored in {@code config/trailblazer.json}.
+ * Server-side settings, stored in {@code config/pathroller.json}.
  * Missing or invalid values fall back to the defaults below, and the file is rewritten with every key present.
  */
-public final class TrailblazerConfig {
+public final class PathRollerConfig {
     private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
-    private static TrailblazerConfig instance = new TrailblazerConfig();
+    private static PathRollerConfig instance = new PathRollerConfig();
 
     /** Width a freshly crafted roller paves. */
     public int defaultWidth = 3;
@@ -34,22 +34,22 @@ public final class TrailblazerConfig {
     /** Movement speed while rolling, as a fraction of walking speed (vanilla item use is 0.2). */
     public float rollingSpeed = 0.8F;
 
-    public static TrailblazerConfig get() {
+    public static PathRollerConfig get() {
         return instance;
     }
 
     public static void load() {
-        Path path = Platform.getConfigFolder().resolve(Trailblazer.MOD_ID + ".json");
-        TrailblazerConfig config = null;
+        Path path = Platform.getConfigFolder().resolve(PathRoller.MOD_ID + ".json");
+        PathRollerConfig config = null;
         if (Files.exists(path)) {
             try (Reader reader = Files.newBufferedReader(path)) {
-                config = GSON.fromJson(reader, TrailblazerConfig.class);
+                config = GSON.fromJson(reader, PathRollerConfig.class);
             } catch (IOException | JsonParseException e) {
-                Trailblazer.LOGGER.error("Could not read {}, using defaults", path, e);
+                PathRoller.LOGGER.error("Could not read {}, using defaults", path, e);
             }
         }
         if (config == null) {
-            config = new TrailblazerConfig();
+            config = new PathRollerConfig();
         }
         config.sanitize();
         instance = config;
@@ -60,7 +60,7 @@ public final class TrailblazerConfig {
                 GSON.toJson(config, writer);
             }
         } catch (IOException e) {
-            Trailblazer.LOGGER.error("Could not write {}", path, e);
+            PathRoller.LOGGER.error("Could not write {}", path, e);
         }
     }
 
