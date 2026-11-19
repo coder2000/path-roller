@@ -7,7 +7,7 @@ import zlib
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-ASSETS = ROOT / "common/src/main/resources/assets/trailblazer"
+ASSETS = ROOT / "src/main/resources/assets/trailblazer"
 
 PALETTE = {
     ".": (0, 0, 0, 0),

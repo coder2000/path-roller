@@ -3,8 +3,8 @@
 A Minecraft mod that adds a **Path Roller**: hold use and walk, and it paves dirt paths along the way,
 instead of clicking a shovel on every block.
 
-Targets **Minecraft 26.3** on **Fabric** and **NeoForge** (built with Architectury). Requires
-[Architectury API](https://modrinth.com/mod/architectury-api) (and Fabric API on Fabric).
+This branch (`1.20.1`) targets **Minecraft 1.20.1** on **Forge 47.x** as a standalone mod with no other
+dependencies. The `main` branch has the Minecraft 26.3 version for Fabric and NeoForge.
 
 ## Using the roller
 
@@ -22,6 +22,7 @@ Targets **Minecraft 26.3** on **Fabric** and **NeoForge** (built with Architectu
   podzol, mycelium, rooted dirt). You can extend the tag with a datapack.
 - Respects spawn protection and other build permissions.
 - Uses 1 durability per block paved; creative mode doesn't use durability.
+- You keep walking at near-normal speed while rolling, instead of the usual 20% for held items.
 
 ### Recipe
 
@@ -33,7 +34,8 @@ ILI     L = any log
 
 ## Configuration
 
-`config/trailblazer.json` is created on first launch (server side for multiplayer):
+`config/trailblazer.json` is created on first launch. Paving settings are read on the server;
+`rollingSpeed` is read on each player's client.
 
 | Key | Default | Meaning |
 | --- | --- | --- |
@@ -47,21 +49,21 @@ ILI     L = any log
 
 ## Building
 
-Minecraft 26.3 needs **Java 25** to build. Point `JAVA_HOME` at a JDK 25, then:
-
 ```bash
 ./gradlew build
 ```
 
-Jars end up in `fabric/build/libs/` and `neoforge/build/libs/` (use the ones without `-raw`/`-sources`).
+Gradle runs on JDK 17+ and downloads the Java 17 toolchain ForgeGradle needs if it isn't installed.
+The mod jar is `build/libs/trailblazer-1.20.1-<version>.jar`; drop it in your `mods` folder.
 
-Run the game in dev with `./gradlew :fabric:runClient` or `./gradlew :neoforge:runClient`.
+Run the game in dev with `./gradlew runClient`.
 
 ## Layout
 
-- `common/` – all gameplay code and assets, shared by both loaders
-  - `paving/PathPaver.java` – footprint geometry (incl. diagonals) and block conversion
+- `src/main/java/ca/dieterlunn/trailblazer/`
+  - `paving/PaveFootprint.java` – footprint geometry, including diagonals
+  - `paving/PathPaver.java` – block conversion
   - `item/RollerItem.java` – use/hold behaviour, width cycling, tooltip
+  - `client/RollerMovement.java` – removes the use-item slowdown while rolling
   - `TrailblazerConfig.java` – JSON config
-- `fabric/`, `neoforge/` – thin loader entrypoints and metadata
 - `tools/make_textures.py` – regenerates the placeholder item texture and icon
