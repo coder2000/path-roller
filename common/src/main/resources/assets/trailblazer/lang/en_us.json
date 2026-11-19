@@ -1,0 +1,6 @@
+{
+  "item.trailblazer.roller": "Path Roller",
+  "item.trailblazer.roller.width": "Roller width: %s",
+  "item.trailblazer.roller.tooltip.width": "Width: %s",
+  "item.trailblazer.roller.tooltip.usage": "Hold use and walk to pave. Sneak + use to change width."
+}
