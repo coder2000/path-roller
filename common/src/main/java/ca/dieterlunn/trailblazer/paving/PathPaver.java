@@ -29,6 +29,12 @@ public final class PathPaver {
     /** Blocks a roller can flatten. Defaults mirror what a shovel flattens; extend it with a datapack. */
     public static final TagKey<Block> ROLLABLE =
             TagKey.create(Registries.BLOCK, Identifier.fromNamespaceAndPath(Trailblazer.MOD_ID, "rollable"));
+    /**
+     * Plants the roller clears (dropping them as items) even though they aren't replaceable like grass is.
+     * Defaults to small and tall flowers; extend it with a datapack.
+     */
+    public static final TagKey<Block> CLEARABLE =
+            TagKey.create(Registries.BLOCK, Identifier.fromNamespaceAndPath(Trailblazer.MOD_ID, "clearable"));
 
     private PathPaver() {
     }
@@ -109,7 +115,8 @@ public final class PathPaver {
             if (!config.clearPlants || !isClearablePlant(above) || !level.mayInteract(player, abovePos)) {
                 return false;
             }
-            level.destroyBlock(abovePos, false, player);
+            // Grass and the like vanish quietly; tagged plants such as flowers are dropped so they aren't lost.
+            level.destroyBlock(abovePos, above.is(CLEARABLE), player);
         }
 
         BlockState path = Blocks.DIRT_PATH.defaultBlockState();
@@ -119,6 +126,6 @@ public final class PathPaver {
     }
 
     private static boolean isClearablePlant(BlockState state) {
-        return !state.isAir() && state.canBeReplaced() && state.getFluidState().isEmpty();
+        return !state.isAir() && state.getFluidState().isEmpty() && (state.canBeReplaced() || state.is(CLEARABLE));
     }
 }
