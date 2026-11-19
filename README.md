@@ -68,3 +68,7 @@ Run the game in dev with `./gradlew runClient`.
   - `client/RollerMovement.java` – removes the use-item slowdown while rolling
   - `TrailblazerConfig.java` – JSON config
 - `tools/make_textures.py` – regenerates the placeholder item texture and icon
+
+## License
+
+[MIT](LICENSE)
