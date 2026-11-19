@@ -17,7 +17,8 @@ dependencies. The `main` branch has the Minecraft 26.3 version for Fabric and Ne
   Diagonal paths are widened slightly (about width × √2 diagonal bands) so they look as wide as straight
   ones and you never have to step across a block corner.
 - The path follows terrain up/down by `verticalReach` blocks.
-- Grass, flowers and other replaceable plants on top are cleared (configurable).
+- Grass and other replaceable plants on top are cleared. Flowers (the `trailblazer:clearable` tag) are
+  cleared too and dropped as items. Both are controlled by `clearPlants`.
 - Only blocks in the `trailblazer:rollable` block tag are converted (by default: grass, dirt, coarse dirt,
   podzol, mycelium, rooted dirt). You can extend the tag with a datapack.
 - Respects spawn protection and other build permissions.
