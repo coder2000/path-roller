@@ -33,6 +33,15 @@ public final class PathRollerConfig {
     public int durability = 1024;
     /** Movement speed while rolling, as a fraction of walking speed (vanilla item use is 0.2). */
     public float rollingSpeed = 0.8F;
+    /**
+     * Where the path climbs or drops by one block, turn the higher path block into a path slab so the path
+     * rises in half steps. Needs the slab below to exist (Let's Do Vinery adds it); otherwise this does nothing.
+     */
+    public boolean smoothSlopes = true;
+    /** Block ID of the path slab used by {@link #smoothSlopes}. */
+    public String pathSlab = "vinery:dirt_path_slab";
+    /** Write a trace of each paving and slope-smoothing decision to the game log (for troubleshooting). */
+    public boolean debugLogging = false;
 
     public static PathRollerConfig get() {
         return instance;
@@ -53,6 +62,8 @@ public final class PathRollerConfig {
         }
         config.sanitize();
         instance = config;
+        PathRoller.LOGGER.info("Loaded {}: smoothSlopes={}, pathSlab={}, debugLogging={}",
+                path.getFileName(), config.smoothSlopes, config.pathSlab, config.debugLogging);
 
         try {
             Files.createDirectories(path.getParent());
@@ -70,6 +81,9 @@ public final class PathRollerConfig {
         verticalReach = clamp(verticalReach, 0, 4);
         durability = Math.max(0, durability);
         rollingSpeed = Math.max(0.2F, Math.min(1.0F, rollingSpeed));
+        if (pathSlab == null) {
+            pathSlab = "";
+        }
     }
 
     private static int clamp(int value, int min, int max) {

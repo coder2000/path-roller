@@ -19,6 +19,9 @@ dependencies. The `main` branch has the Minecraft 26.3 version for Fabric and Ne
 - The path follows terrain up/down by `verticalReach` blocks.
 - Grass and other replaceable plants on top are cleared. Flowers (the `pathroller:clearable` tag) are
   cleared too and dropped as items. Both are controlled by `clearPlants`.
+- **Smooth slopes** – if [Let's Do Vinery](https://www.curseforge.com/minecraft/mc-mods/lets-do-vinery) is
+  installed, wherever the path climbs or drops by one block the higher block becomes a dirt path slab, so
+  you walk up in half steps. Any other mod's path slab can be used via `pathSlab`.
 - Only blocks in the `pathroller:rollable` block tag are converted (by default: grass, dirt, coarse dirt,
   podzol, mycelium, rooted dirt). You can extend the tag with a datapack.
 - Respects spawn protection and other build permissions.
@@ -47,6 +50,9 @@ ILI     L = any log
 | `clearPlants` | `true` | Remove plants sitting on blocks being paved |
 | `durability` | `1024` | Roller durability; `0` = unbreakable (needs restart) |
 | `rollingSpeed` | `0.8` | Walk speed while rolling, as a fraction of normal (0.2–1.0) |
+| `smoothSlopes` | `true` | Turn the higher block of a one-block step into a path slab |
+| `pathSlab` | `"vinery:dirt_path_slab"` | Slab block used by `smoothSlopes` |
+| `debugLogging` | `false` | Log each paving and smoothing decision (for troubleshooting) |
 
 ## Building
 
